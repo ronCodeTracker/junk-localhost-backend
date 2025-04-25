@@ -3,8 +3,12 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const itemRoutes = require('./routes/itemRoutes');
+const items = require('./routes/items');
+const users = require('./routes/users');
 const bodyParser = require('body-parser')
+
+const passport = require("passport");
+require("./config/passport")(passport);
 
 const app = express();
 
@@ -20,8 +24,8 @@ mongoose
   .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 // Routes
-app.use('/api/items', itemRoutes);
-
+app.use('/api/items', items);
+app.use('/api/users', users);
 // Export the app as a serverless function
 //module.exports.handler = serverless(app);
 

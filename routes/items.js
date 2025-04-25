@@ -2,6 +2,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs'); // Library for hashing passwords
 const bodyParser = require('body-parser')
 const router = express.Router();
 const Junk = require("../models/junk")
@@ -20,7 +21,10 @@ router.use(bodyParser.urlencoded({
 
 //const Item = mongoose.model('Item', itemSchema);
 
+
+
 // POST: Add a new item
+
 router.post('/',  (req, res) => {
      
     console.log("started post route");
