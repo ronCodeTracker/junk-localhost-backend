@@ -76,6 +76,17 @@ router.post('/login', (req, res) => {
     }).catch(err => res.status(500).json({ error: "Internal server error" }));
 });
 
+// GET: Fetch all users (Restricted/Debug)
+router.get('/users', async (req, res) => {
+    try {
+        const users = await User.find(); // Fetch all users from the database
+        res.status(200).json(users); // Return the users in JSON format
+    } catch (err) {
+        console.error("Error fetching users:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
 module.exports = router;
 
 
